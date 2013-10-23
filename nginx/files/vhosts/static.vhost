@@ -1,0 +1,31 @@
+server {
+  client_max_body_size 20M;
+  {% if grains['id'] == 'development' %}
+  server_name static.trapps.dev;
+  {% else %}
+  server_name static.trapps.nl;
+  {% endif %}
+  root {{ root }};
+
+  location ~* \.php$ {
+    fastcgi_pass {{ socket }};
+    fastcgi_index index.php;
+    fastcgi_split_path_info ^(.+\.php)(.*)$;
+    include fastcgi_params;
+    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+  }
+
+  location ~ ^/(.*)/cache/(.*)$ {
+    try_files $uri @resize;
+    expires 4h;
+  }
+
+  location / {
+    expires 4h;
+  }
+
+  location @resize {
+    rewrite ^/(.*)/cache/(.*)$ /resize.php?dir=$1&path=$2;
+    include /etc/nginx/fastcgi_params;
+  }
+}
