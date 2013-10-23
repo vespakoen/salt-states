@@ -8,7 +8,7 @@ wal-e:
   virtualenv.managed:
     - name: /home/{{ pillar['user'] }}/wal-e
     - no_site_packages: True
-    - requirements: salt://postgresql/requirements.txt
+    - requirements: salt://vespakoen/postgresql/requirements.txt
     - require:
       - pkg: wal-e-deps
   file.directory:
@@ -38,7 +38,7 @@ extend:
 wal-e-{{ key }}:
   file.managed:
     - name: /etc/wal-e.d/env/{{ key }}
-    - source: salt://postgresql/env
+    - source: salt://vespakoen/postgresql/env
     - template: jinja
     - mode: 640
     - context:

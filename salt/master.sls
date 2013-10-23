@@ -10,7 +10,7 @@ salt-master:
 
 /etc/salt/master.d/master.conf:
     file.managed:
-        - source: salt://salt/files/master.conf
+        - source: salt://vespakoen/salt/files/master.conf
         - template: jinja
         - require:
             - pkg: salt-master

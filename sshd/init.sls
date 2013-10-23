@@ -8,5 +8,5 @@ ssh:
       - pkg: ssh
   file.managed:
     - name: /etc/ssh/sshd_config
-    - source: salt://sshd/sshd_config
+    - source: salt://vespakoen/sshd/sshd_config
     - template: jinja

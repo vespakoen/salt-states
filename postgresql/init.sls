@@ -6,7 +6,7 @@ postgresql:
     - installed
   file.managed:
     - name: /etc/postgresql/9.1/main/postgresql.conf
-    - source: salt://postgresql/postgresql.conf
+    - source: salt://vespakoen/postgresql/postgresql.conf
     - template: jinja
     - user: postgres
     - group: postgres
@@ -26,7 +26,7 @@ postgresql-contrib:
 postgresql-hba:
   file.managed:
     - name: /etc/postgresql/9.1/main/pg_hba.conf
-    - source: salt://postgresql/pg_hba.conf
+    - source: salt://vespakoen/postgresql/pg_hba.conf
     - user: postgres
     - group: postgres
     - mode: 644

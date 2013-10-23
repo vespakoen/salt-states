@@ -13,14 +13,14 @@ nginx:
 
 /etc/nginx/nginx.conf:
     file.managed:
-        - source: salt://nginx/files/nginx.conf
+        - source: salt://vespakoen/nginx/files/nginx.conf
         - template: jinja
         - require:
             - pkg: nginx
 
 # /etc/nginx/mime.types:
 #     file.managed:
-#         - source: salt://nginx/files/mime.types
+#         - source: salt://vespakoen/nginx/files/mime.types
 #         - require:
 #             - pkg: nginx 
 
@@ -32,7 +32,7 @@ nginx:
 
 /etc/nginx/custom.d/optimize.conf:
     file.managed:
-        - source: salt://nginx/files/optimize.conf
+        - source: salt://vespakoen/nginx/files/optimize.conf
         - require:
             - pkg: nginx
             - file: /etc/nginx/custom.d
@@ -40,7 +40,7 @@ nginx:
 {% if pillar.get('nginx', {}).get('mail', {}) == True %}
 /etc/nginx/custom.d/mail.conf:
     file.managed:
-        - source: salt://nginx/files/mail.conf
+        - source: salt://vespakoen/nginx/files/mail.conf
         - require:
             - pkg: nginx
             - file: /etc/nginx/custom.d

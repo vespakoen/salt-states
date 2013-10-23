@@ -4,7 +4,7 @@ iptables:
 
 /etc/iptables.rules:
     file.managed:
-        - source: salt://iptables/files/iptables.rules
+        - source: salt://vespakoen/vespakoen/iptables/files/iptables.rules
         - template: jinja
         - require:
             - pkg: iptables
@@ -17,7 +17,7 @@ iptables:
 
 /etc/network/if-pre-up.d/iptables:
     file.managed:
-        - source: salt://iptables/files/iptables
+        - source: salt://vespakoen/vespakoen/iptables/files/iptables
         - mode: 755
         - require:
             - file: /etc/iptables.rules

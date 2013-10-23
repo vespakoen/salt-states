@@ -3,7 +3,7 @@ include:
 
 /etc/nginx/conf.d/pagespeed.conf:
     file.managed:
-        - source: salt://pagespeed/files/pagespeed.conf
+        - source: salt://vespakoen/pagespeed/files/pagespeed.conf
         - template: jinja
         - watch_in:
             - service: nginx

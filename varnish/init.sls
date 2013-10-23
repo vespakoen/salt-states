@@ -16,7 +16,7 @@ varnish:
 
 /etc/default/varnish:
     file.managed:
-        - source: salt://varnish/files/varnish
+        - source: salt://vespakoen/varnish/files/varnish
         - template: jinja
         - require:
             - pkg: varnish

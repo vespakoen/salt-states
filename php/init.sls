@@ -49,14 +49,14 @@ php:
 
 /etc/php5/conf.d/php.ini:
     file.managed:
-        - source: salt://php/files/php.ini
+        - source: salt://vespakoen/php/files/php.ini
         - require:
             - pkg: php
         - template: jinja
 
 # /etc/php5/conf.d/apc.ini:
 #     file.managed:
-#         - source: salt://php/files/apc.ini
+#         - source: salt://vespakoen/php/files/apc.ini
 #         - require:
 #             - pkg: php
 
@@ -64,7 +64,7 @@ php:
 {% if 'php' in args and args.php == True %}
 /etc/php5/fpm/pool.d/{{ site }}.conf:
     file.managed:
-        - source: salt://php/files/site.conf
+        - source: salt://vespakoen/php/files/site.conf
         - template: jinja
         - context:
             site: {{ site }}

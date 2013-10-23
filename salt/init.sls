@@ -10,7 +10,7 @@ salt-minion:
 
 /etc/salt/minion.d/minion.conf:
     file.managed:
-        - source: salt://salt/files/minion.conf
+        - source: salt://vespakoen/salt/files/minion.conf
         - template: jinja
         - require:
             - pkg: salt-minion

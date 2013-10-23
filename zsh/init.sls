@@ -1,14 +1,17 @@
 {% for user, args in pillar.get('users', {}).items() %}
 oh-my-zsh-{{ user }}:
   git.latest:
-    - name: git://github.com/robbyrussell/oh-my-zsh.git
+    - name: https://github.com/robbyrussell/oh-my-zsh.git
     - target: /home/{{ user }}/.oh-my-zsh
-    - user: {{ user }}
+    - rev: master
     - submodules: true
+
+chown {{ user }}:{{ user }} /home/{{ user }}/.oh-my-zsh:
+  cmd.run
 
 /home/{{ user }}/.zshrc:
   file.managed:
-    - source: salt://zsh/files/.zshrc
+    - source: salt://vespakoen/zsh/files/.zshrc
     - user: {{ user }}
     - group: {{ user }}
     - template: jinja
