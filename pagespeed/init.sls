@@ -1,5 +1,5 @@
 include:
-    - nginx
+    - vespakoen.nginx
 
 /etc/nginx/conf.d/pagespeed.conf:
     file.managed:

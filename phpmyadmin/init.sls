@@ -1,7 +1,7 @@
 include:
-    - mysql
-    - nginx
-    - php
+    - vespakoen.mysql
+    - vespakoen.nginx
+    - vespakoen.php
 
 phpmyadmin:
     pkg:

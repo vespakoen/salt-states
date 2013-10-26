@@ -1,5 +1,5 @@
 include:
-    - nginx
+    - vespakoen.nginx
 
 get-composer:
   cmd.run:

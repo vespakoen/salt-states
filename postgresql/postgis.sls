@@ -1,5 +1,5 @@
 include:
-  - postgresql
+  - vespakoen.postgresql
 
 postgis-packages:
   pkg.installed:

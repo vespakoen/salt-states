@@ -1,9 +1,9 @@
 {% for user, args in pillar.get('users', {}).items() %}
 
 {% for group in args.get('groups', []) %}
-{{ group }}:
-    group:
-        - present
+group-{{ user }}-{{ group }}:
+    group.present:
+        - name: {{ group }}
 {% endfor %}
 
 {{ user }}:
@@ -11,7 +11,6 @@
         - present
     user.present:
         - home: {{ args.get('home', '/home/%s' % user) }}
-        - createhome: True
         - shell: {{ args.get('shell', '/bin/bash') }}
         {% if 'uid' in args %}
         - uid: {{ args.get('uid') }}
@@ -33,6 +32,13 @@
             {% for group in args.get('groups', []) %}
             - group: {{ group }}
             {% endfor %}
+
+make-{{ user }}-home-folder:
+    file.directory:
+        - name: /home/{{ user }}
+        - user: {{ user }}
+        - group: {{ user }}
+        - mode: 755
 
 {% if 'ssh_auth' in args %}
 {{ args.get('home', '/home/%s' % user) }}/.ssh:

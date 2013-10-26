@@ -1,5 +1,5 @@
 #include:
-#  - sysctl
+#  - vespakoen.sysctl
 
 postgresql:
   pkg:
