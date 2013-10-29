@@ -45,7 +45,6 @@ make-{{ user }}-home-folder:
     file.directory:
         - user: {{ user }}
         - group: {{ user }}
-        - makedirs: True
         - mode: 700
         - require:
             - user: {{ user }}

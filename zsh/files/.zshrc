@@ -43,4 +43,3 @@ ZSH_THEME="{{ pillar['zsh'].get('theme', 'steeef') }}"
 plugins=({{ pillar['zsh'].get('plugins', [])|join(" ") }})
 
 source $ZSH/oh-my-zsh.sh
-

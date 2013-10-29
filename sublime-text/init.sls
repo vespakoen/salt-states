@@ -44,6 +44,13 @@ package-{{ package }}:
 {% endfor %}
 {% endfor %}
 
+/home/{{ pillar['username'] }}/.config/sublime-text-3/Installed Packages/Sublimerge Pro.sublime-package:
+  file.managed:
+    - source: http://www.sublimerge.com/packages/ST3/2.6.0/Sublimerge%20Pro.sublime-package
+    - source_hash: md5=61b8a49f005b2cdc17c9527161925f88
+    - user: {{ pillar['username'] }}
+    - group: {{ pillar['username'] }}
+
 change-flatland-colors:
   cmd.run:
     - cwd: /home/{{ pillar['username'] }}/.config/sublime-text-3/Packages/Theme - Flatland/Flatland Dark
