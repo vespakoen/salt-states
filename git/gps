@@ -1,0 +1,13 @@
+#!/bin/bash
+
+while IFS= read -r repo; do
+  [[ ! ${repo// } ]] && continue
+  IFS= read -r path
+  path=${path#*: }
+  printf '>> running git status for %s (%s)\n\n' "${repo##*/}" "$path"
+  #cd $path && git status
+  git --git-dir="$path/.git" --work-tree="$path" status
+  printf '\n\n\n'
+done < <(cat /srv/pillar/machine.sls | shyaml get-value projects | shyaml values)
+
+unset IFS

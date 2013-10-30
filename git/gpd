@@ -1,0 +1,11 @@
+#!/bin/bash
+
+while IFS= read -r repo; do
+  [[ ! ${repo// } ]] && continue;
+  IFS= read -r path;
+  path=${path#*: };
+  printf '>> running git diff for %s (%s)\n\n' "${repo##*/}" "$path";
+  cd $path && git --no-pager diff
+  printf '\n\n\n'
+done < <(cat /srv/pillar/machine.sls | shyaml get-value projects | shyaml values)
+unset IFS

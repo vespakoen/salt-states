@@ -1,6 +1,7 @@
 applications:
     pkg.installed:
       - names:
+        - xubuntu-desktop
         - chromium-browser
         - chromium-codecs-ffmpeg
         - chromium-codecs-ffmpeg-extra
