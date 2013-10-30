@@ -26,13 +26,22 @@ change-keymap-preferences:
     - group: {{ pillar['username'] }}
 
 {% for package, args in pillar.get('sublime-text', {}).get('packages', {}).iteritems() %}
-package-{{ package }}:
-  git.latest:
-    - name: {{ args.get('git') }}
-    - rev: {{ args.get('rev') }}
-    - target: '/home/{{ pillar['username'] }}/.config/sublime-text-3/Packages/{{ args.get('dir') }}'
+
+# @todo FIXME Temp fix, git problems with space in path
+rm -rf '/home/{{ pillar['username'] }}/.config/sublime-text-3/Packages/{{ args.get('dir') }}':
+  cmd.run
+
+git clone -b {{ args.get('rev') }} {{ args.get('git') }} '/home/{{ pillar['username'] }}/.config/sublime-text-3/Packages/{{ args.get('dir') }}':
+  cmd.run:
     - user: {{ pillar['username'] }}
-    - submodules: true
+
+# package-{{ package }}:
+#   git.latest:
+#     - name: {{ args.get('git') }}
+#     - rev: {{ args.get('rev') }}
+#     - target: '/home/{{ pillar['username'] }}/.config/sublime-text-3/Packages/{{ args.get('dir') }}'
+#     - user: {{ pillar['username'] }}
+#     - submodules: true
 
 {% for file, args in args.get('files', {}).iteritems() %}
 /home/{{ pillar['username'] }}/.config/sublime-text-3/Packages/{{ file }}:

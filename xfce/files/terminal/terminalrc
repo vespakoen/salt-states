@@ -1,0 +1,23 @@
+[Configuration]
+FontName=Ubuntu Mono 11
+MiscAlwaysShowTabs=FALSE
+MiscBell=FALSE
+MiscBordersDefault=TRUE
+MiscCursorBlinks=FALSE
+MiscCursorShape=TERMINAL_CURSOR_SHAPE_BLOCK
+MiscDefaultGeometry=80x24
+MiscInheritGeometry=FALSE
+MiscMenubarDefault=TRUE
+MiscMouseAutohide=FALSE
+MiscToolbarDefault=FALSE
+MiscConfirmClose=TRUE
+MiscCycleTabs=TRUE
+MiscTabCloseButtons=TRUE
+MiscTabCloseMiddleClick=TRUE
+MiscTabPosition=GTK_POS_TOP
+MiscHighlightUrls=TRUE
+MiscScrollAlternateScreen=TRUE
+ScrollingLines=10000000
+ColorPalette=#000000000000;#cccc00000000;#b3b3d8d86a6a;#d6d664643232;#34346565a4a4;#f4f4d3d35959;#52529a9ab6b6;#d3d3d7d7cfcf;#af7baf7baf7b;#efef29292929;#8a8ae2e23434;#f4f4d3d35959;#73739f9fcfcf;#adad7f7fa8a8;#3434e2e2e2e2;#eeeeeeeeecec
+ColorBackground=#262629292c2c
+ColorCursor=#f4f4d3d35959
