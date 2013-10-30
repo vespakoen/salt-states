@@ -1,0 +1,11 @@
+[user]
+  email = k.schmeets@gmail.com
+  name = Koen Schmeets
+[core]
+  editor = subl
+[web]
+  browser = chromium-browser
+[color]
+  ui = true
+[push]
+  default = matching
