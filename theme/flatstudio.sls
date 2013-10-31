@@ -16,9 +16,10 @@ unpack-flatstudio:
     - user: {{ pillar['username'] }}
 change-color:
   cmd.run:
-    - name: "find /home/{{ pillar['username'] }}/.themes/FlatStudio -type f -exec sed -i 's/#81d3d3/#{{ pillar['color'] }}/g' {} \\;"
-    - name: "find /home/{{ pillar['username'] }}/.themes/FlatStudioDark -type f -exec sed -i 's/#4d679a/#{{ pillar['color'] }}/g' {} \\;"
-    - name: "find /home/{{ pillar['username'] }}/.themes/FlatStudioDark -type f -exec sed -i 's/#e9e9e9/#000000/g' {} \\;"
+    - names:
+      - "find /home/{{ pillar['username'] }}/.themes/FlatStudio -type f -exec sed -i 's/#81d3d3/#{{ pillar['color'] }}/g' {} \\;"
+      - "find /home/{{ pillar['username'] }}/.themes/FlatStudioDark -type f -exec sed -i 's/#4d679a/#{{ pillar['color'] }}/g' {} \\;"
+      - "find /home/{{ pillar['username'] }}/.themes/FlatStudioDark -type f -exec sed -i 's/#e9e9e9/#000000/g' {} \\;"
 
 {% if pillar.get('xubuntu', False) %}
 xfconf-query -c xsettings -p /Net/ThemeName -s FlatStudioDark:

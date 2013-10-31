@@ -4,4 +4,4 @@
     - template: jinja
     - user: {{ pillar['username'] }}
     - group: {{ pillar['username'] }}
-    - mode: 600
+    - mode: 644

@@ -15,7 +15,6 @@ import XMonad.Hooks.EwmhDesktops
 myManageHook = composeAll [ manageHook defaultConfig
     , className =? "Unity-2d-panel" --> doIgnore
     , className =? "Unity-2d-launcher" --> doFloat
-    , className =? "Gimp" --> doFloat
     , manageDocks
     ]
 
@@ -33,7 +32,7 @@ myLayoutHook = avoidStruts $ mouseResizableTile { masterFrac = ratio, fracIncrem
 selected   = "'#{{ pillar['color'] }}'"
 background = "'#363a3b'" --313437
 foreground = "'#ffffff'"
-selectedForeground = "'#363a3b'" --313437
+selectedForeground = "'#ffffff'" --313437
 -- height matches Ubuntu top Gnome panel
 barHeight = "30"
 
@@ -73,7 +72,7 @@ main = xmonad $ ewmh defaultConfig {
     `additionalKeys` [
         ((mod1Mask,                 xK_i), sendMessage ShrinkSlave) -- %! Shrink a slave area
         , ((mod1Mask,               xK_o), sendMessage ExpandSlave) -- %! Expand a slave area
-        , ((mod1Mask,               xK_k    ), windows W.focusDown) -- %! Move focus to the next window
-        , ((mod1Mask,               xK_j    ), windows W.focusUp) -- %! Move focus to the previous window
-        , ((mod1Mask,               xK_p ), spawn myDmenuTitleBar)
+        , ((mod1Mask,               xK_j), windows W.focusDown) -- %! Move focus to the next window
+        , ((mod1Mask,               xK_k), windows W.focusUp) -- %! Move focus to the previous window
+        , ((mod1Mask,               xK_p), spawn myDmenuTitleBar)
     ]

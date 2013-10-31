@@ -2,6 +2,6 @@ file:///tmp
 file:///home/koen/Downloads
 file:///home/koen/Documents
 file:///home/koen/Projects
-{% for project, args in pillar.get('projects', {}).iteritems() %}
-file://{{ args.get('path') }}
-{% endfor %}
+{% for project, args in pillar.get('projects', {}).iteritems() -%}
+file:///home/{{ pillar['username'] }}/.marks/{{ project }}
+{% endfor -%}
