@@ -16,3 +16,12 @@ applications:
         - wine
         - tree
         - gnome-font-viewer
+
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - :
+    cmd.run
+
+echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list:
+    cmd.run
+
+google-chrome-beta:
+    pkg.installed
