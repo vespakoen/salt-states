@@ -5,3 +5,4 @@ common:
       - git-core
       - htop
       - dpkg
+      - tmux
