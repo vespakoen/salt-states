@@ -19,10 +19,14 @@ change-color:
     - names:
       - "find /home/{{ pillar['username'] }}/.themes/FlatStudio -type f -exec sed -i 's/#81d3d3/#{{ pillar['color'] }}/g' {} \\;"
       - "find /home/{{ pillar['username'] }}/.themes/FlatStudioDark -type f -exec sed -i 's/#4d679a/#{{ pillar['color'] }}/g' {} \\;"
-      - "find /home/{{ pillar['username'] }}/.themes/FlatStudioDark -type f -exec sed -i 's/#e9e9e9/#000000/g' {} \\;"
+      - "find /home/{{ pillar['username'] }}/.themes/FlatStudioDark -type f -exec sed -i 's/#E9E9E9/#{{ pillar['foreground_color'] }}/g' {} \\;"
+      - "find /home/{{ pillar['username'] }}/.themes/FlatStudioDark -type f -exec sed -i 's/#e9e9e9/#{{ pillar['foreground_color'] }}/g' {} \\;"
 
 {% if pillar.get('xubuntu', False) %}
 xfconf-query -c xsettings -p /Net/ThemeName -s FlatStudioDark:
+  cmd.run
+
+xfconf-query -c xfce4-notifyd -p /theme -s FlatStudioDark:
   cmd.run
 {% else %}
 dbus-launch --exit-with-session gsettings set org.gnome.desktop.interface gtk-theme FlatStudio:
