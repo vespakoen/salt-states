@@ -27,7 +27,6 @@ php:
             - php5-mysql
             - php5-pgsql
             - php5-memcache
-            - php5-snmp
             - php5-sqlite
             - php5-xmlrpc
             - php5-json
