@@ -1,0 +1,25 @@
+#!/usr/bin/env php
+<?php
+
+$username = '{{ pillar['username'] }}';
+
+if( ! isset($argv[1]) || ! in_array($argv[1], array('clear', 'add')))
+{
+  exit('Please use one of the available options: "add path-to.sublime-project", "clear"');
+}
+
+$session_contents = file_get_contents('/home/'.$username.'/.config/sublime-text-3/Local/Session.sublime_session');
+$session = json_decode($session_contents);
+copy('/home/'.$username.'/.config/sublime-text-3/Local/Session.sublime_session', '/home/'.$username.'/.config/sublime-text-3/Local/Session.backup');
+
+switch($argv[1]) {
+  case "clear":
+    $session->workspaces->recent_workspaces = array();
+    break;
+
+  case "add":
+    $session->workspaces->recent_workspaces[] = $argv[2];
+    break;
+}
+
+file_put_contents('/home/'.$username.'/.config/sublime-text-3/Local/Session.sublime_session', json_encode($session, JSON_UNESCAPED_SLASHES + JSON_PRETTY_PRINT));
