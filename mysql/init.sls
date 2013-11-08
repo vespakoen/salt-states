@@ -29,12 +29,12 @@ mysql-server-5.5:
     - name: {{ database }}
   mysql_user.present:
     - name: {{ args.get('user') }}
-    - host: '%'
+    - host: 'localhost'
     - password_hash: "{{ args.get('password_hash') }}"
   mysql_grants.present:
     - database: {{ database }}.*
     - user: {{ args.get('user') }}
-    - host: '%'
+    - host: 'localhost'
     - grant: ALL PRIVILEGES
   require:
     - pkg: python-mysqldb
