@@ -1,0 +1,4 @@
+#!/bin/sh
+original=$(basename $0)
+mark=${original#browse-}
+thunar `readlink ~/.marks/$mark`

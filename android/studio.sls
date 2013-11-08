@@ -6,8 +6,11 @@ download-android-studio:
 
 unpack-android-studio:
   cmd.run:
-    - name: tar -zxvf /tmp/android-studio.tgz -C /usr/local/android-studio
+    - name: tar -zxvf /tmp/android-studio.tgz -C /usr/local/
 
 symlink-android-studio-executable:
   cmd.run:
     - name: ln -s /usr/local/android-studio/bin/studio.sh /usr/local/bin/android-studio
+
+openjdk-7-jdk:
+  pkg.installed

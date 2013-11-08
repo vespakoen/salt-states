@@ -61,10 +61,9 @@ nginx:
             site: {{ site }}
             socket: unix:/var/run/{{ site }}.pid
             root: {{ args.get('root') }}
+            domains: {{ args.get('domains') }}
         - watch_in:
             - service: nginx
-        - require:
-            - pkg: nginx
 
 {% if 'enable' in args and args.enable == True %}
 /etc/nginx/sites-enabled/{{ site }}:

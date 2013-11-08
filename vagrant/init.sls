@@ -1,7 +1,7 @@
-install-vagrant:
+vagrant:
   pkg.installed:
-    - pkgs:
-      - vagrant
+    - sources:
+      - vagrant: salt://vespakoen/vagrant/files/vagrant_1.3.5_x86_64.deb
 
   cmd.run:
     - name: vagrant plugin install vagrant-salt

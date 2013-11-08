@@ -1,40 +1,12 @@
 include:
     - vespakoen.nginx
-
-get-composer:
-  cmd.run:
-    - name: 'CURL=`which curl`; $CURL -sS https://getcomposer.org/installer | php'
-    - unless: test -f /usr/local/bin/composer
-    - cwd: /root/
-
-install-composer:
-  cmd.wait:
-    - name: mv /root/composer.phar /usr/local/bin/composer
-    - cwd: /root/
-    - watch:
-      - cmd: get-composer
+    - vespakoen.php.composer
 
 php:
     pkg.installed:
         - pkgs:
             - php5-fpm
             - php5-cli
-            - php5-common
-            - php5-curl
-            - php5-gd
-            - php5-imagick
-            - php5-mcrypt
-            - php5-mysql
-            - php5-pgsql
-            - php5-memcache
-            - php5-snmp
-            - php5-sqlite
-            - php5-xmlrpc
-            - php5-json
-            - php5-memcached
-            - php-apc
-            - php-pear
-            - php5-intl
         - require:
             - pkg: nginx
     service.running:
@@ -47,6 +19,10 @@ php:
         - require:
             - pkg: php
 
+php-extras:
+    pkg.installed:
+        - pkgs: {{ pillar['php'].get('packages') }}
+
 /etc/php5/conf.d/php.ini:
     file.managed:
         - source: salt://vespakoen/php/files/php.ini
@@ -54,11 +30,13 @@ php:
             - pkg: php
         - template: jinja
 
-# /etc/php5/conf.d/apc.ini:
-#     file.managed:
-#         - source: salt://vespakoen/php/files/apc.ini
-#         - require:
-#             - pkg: php
+{% if('php-apc' in pillar.get('php').get('packages', [])) %}
+/etc/php5/conf.d/20-apc.ini:
+    file.managed:
+        - source: salt://vespakoen/php/files/apc.ini
+        - require:
+            - pkg: php
+{% endif %}
 
 {% for site, args in pillar.get('nginx').get('sites', {}).items() %}
 {% if 'php' in args and args.php == True %}

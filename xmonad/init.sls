@@ -1,8 +1,8 @@
 xmonad:
-  pkg.installed:
-    - pkgs:
-      - xmonad
-      - dmenu
+  pkg.installed
+
+suckless-tools:
+  pkg.installed
 
 /home/{{ pillar['username'] }}/.xmonad/xmonad.hs:
   file.managed:
