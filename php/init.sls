@@ -1,18 +1,6 @@
 include:
     - vespakoen.nginx
-
-get-composer:
-  cmd.run:
-    - name: 'CURL=`which curl`; $CURL -sS https://getcomposer.org/installer | php'
-    - unless: test -f /usr/local/bin/composer
-    - cwd: /root/
-
-install-composer:
-  cmd.wait:
-    - name: mv /root/composer.phar /usr/local/bin/composer
-    - cwd: /root/
-    - watch:
-      - cmd: get-composer
+    - vespakoen.php.composer
 
 php:
     pkg.installed:
@@ -42,11 +30,13 @@ php-extras:
             - pkg: php
         - template: jinja
 
-# /etc/php5/conf.d/apc.ini:
-#     file.managed:
-#         - source: salt://vespakoen/php/files/apc.ini
-#         - require:
-#             - pkg: php
+{% if('php-apc' in pillar.get('php').get('packages', [])) %}
+/etc/php5/conf.d/20-apc.ini:
+    file.managed:
+        - source: salt://vespakoen/php/files/apc.ini
+        - require:
+            - pkg: php
+{% endif %}
 
 {% for site, args in pillar.get('nginx').get('sites', {}).items() %}
 {% if 'php' in args and args.php == True %}
