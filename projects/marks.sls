@@ -7,6 +7,4 @@ rm /home/{{ pillar['username'] }}/.marks/*:
     - target: {{ args.get('path') }}
     - user: {{ pillar['username'] }}
     - makedirs: True
-{% endif %}
-
 {% endfor %}
