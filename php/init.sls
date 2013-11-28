@@ -5,7 +5,6 @@ php:
     pkg.installed:
         - pkgs:
             - php5-cli
-            - php5-json
 
 {% if(pillar.get('php', False).get('packages', False)) %}
 php-extras:
