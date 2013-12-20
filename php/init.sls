@@ -6,7 +6,7 @@ php:
         - pkgs:
             - php5-cli
 
-{% if(pillar.get('php', False).get('packages', False)) %}
+{% if(pillar.get('php', {}).get('packages', False)) %}
 php-extras:
     pkg.installed:
         - pkgs: {{ pillar['php'].get('packages', []) }}
