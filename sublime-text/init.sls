@@ -1,7 +1,7 @@
 sublime-text:
   pkg.installed:
     - sources:
-      - sublime-text: salt://vespakoen/sublime-text/files/sublime-text_build-3047_amd64.deb
+      - sublime-text: salt://vespakoen/sublime-text/files/sublime-text_build-3059_amd64.deb
 
 wbond-package-manager:
   file.managed:
@@ -35,13 +35,13 @@ git clone -b {{ args.get('rev') }} {{ args.get('git') }} '/home/{{ pillar['usern
   cmd.run:
     - user: {{ pillar['username'] }}
 
-# package-{{ package }}:
-#   git.latest:
-#     - name: {{ args.get('git') }}
-#     - rev: {{ args.get('rev') }}
-#     - target: '/home/{{ pillar['username'] }}/.config/sublime-text-3/Packages/{{ args.get('dir') }}'
-#     - user: {{ pillar['username'] }}
-#     - submodules: true
+package-{{ package }}:
+  git.latest:
+    - name: {{ args.get('git') }}
+    - rev: {{ args.get('rev') }}
+    - target: '/home/{{ pillar['username'] }}/.config/sublime-text-3/Packages/{{ args.get('dir') }}'
+    - user: {{ pillar['username'] }}
+    - submodules: true
 
 {% for file, args in args.get('files', {}).iteritems() %}
 /home/{{ pillar['username'] }}/.config/sublime-text-3/Packages/{{ file }}:
@@ -82,3 +82,20 @@ change-flatland-colors:
       - convert \( icon-wrap-on.png -alpha extract \) -background \#{{ pillar['color'] }} -alpha shape png32:icon-wrap-on.png
       - convert \( quick-panel-row-selected.png -alpha extract \) -background \#{{ pillar['color'] }} -alpha shape png32:quick-panel-row-selected.png
       - convert \( sidebar-row-selected.png -alpha extract \) -background \#{{ pillar['color'] }} -alpha shape png32:sidebar-row-selected.png
+      - convert \( tab-dirty.png -alpha extract \) -background \#{{ pillar['color'] }} -alpha shape png32:tab-dirty.png
+      - convert \( tab-dirty-active.png -alpha extract \) -background \#{{ pillar['color'] }} -alpha shape png32:tab-dirty-active.png
+      - convert \( standard-scrollbar-corner.png -alpha extract \) -background \#383a3b -alpha shape png32:standard-scrollbar-corner.png
+      - convert \( standard-scrollbar-corner.png -alpha extract \) -background \#383a3b -alpha shape png32:standard-scrollbar-corner.png
+      - convert \( standard-scrollbar-horizontal.png -alpha extract \) -background \#383a3b -alpha shape png32:standard-scrollbar-horizontal.png
+      - convert \( standard-scrollbar-vertical.png -alpha extract \) -background \#383a3b -alpha shape png32:standard-scrollbar-vertical.png
+      - convert \( tabset-background.png -alpha extract \) -background \#2f3132 -alpha shape png32:tabset-background.png
+      - convert \( status-bar-background.png -alpha extract \) -background \#383a3b -alpha shape png32:status-bar-background.png
+      - convert \( tab-inactive.png -alpha extract \) -background \#2f3132 -alpha shape png32:tab-inactive.png
+      - convert \( tab-hover.png -alpha extract \) -background \#2f3132 -alpha shape png32:tab-hover.png
+      - convert \( tab-active.png \) -background \#363839 png32:tab-active.png
+      - sed -i 's/49, 52 ,55/44, 46, 47/g' ../Flatland\ Dark.sublime-theme
+      - sed -i 's/49, 52, 55/44, 46, 47/g' ../Flatland\ Dark.sublime-theme
+      - sed -i 's/-5/2/g' ../Flatland\ Dark.sublime-theme
+      - sed -i 's/0, 4, 0, 0/0, 0, 0, 0/g' ../Flatland\ Dark.sublime-theme
+      - sed -i 's/0, 4, 0, 0/0, 0, 0, 0/g' ../Flatland\ Dark.sublime-theme
+      - sed -i 's/ 34,/ 24,/g' ../Flatland\ Dark.sublime-theme
