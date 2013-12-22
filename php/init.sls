@@ -1,27 +1,16 @@
 include:
-    - vespakoen.nginx
     - vespakoen.php.composer
 
 php:
     pkg.installed:
         - pkgs:
-            - php5-fpm
             - php5-cli
-        - require:
-            - pkg: nginx
-    service.running:
-        - name: php5-fpm
-        - enable: True
-        - watch:
-            - file: /etc/php5/conf.d/php.ini
-            # - file: /etc/php5/conf.d/apc.ini
-        - reload: True
-        - require:
-            - pkg: php
 
+{% if(pillar.get('php', {}).get('packages', False)) %}
 php-extras:
     pkg.installed:
-        - pkgs: {{ pillar['php'].get('packages') }}
+        - pkgs: {{ pillar['php'].get('packages', []) }}
+{% endif %}
 
 /etc/php5/conf.d/php.ini:
     file.managed:
@@ -38,7 +27,7 @@ php-extras:
             - pkg: php
 {% endif %}
 
-{% for site, args in pillar.get('nginx').get('sites', {}).items() %}
+{% for site, args in pillar.get('nginx', {}).get('sites', {}).items() %}
 {% if 'php' in args and args.php == True %}
 /etc/php5/fpm/pool.d/{{ site }}.conf:
     file.managed:
