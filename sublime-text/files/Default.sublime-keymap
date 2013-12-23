@@ -9,4 +9,6 @@
   { "keys": ["ctrl+8"], "command": "select_by_index", "args": { "index": 7 } },
   { "keys": ["ctrl+9"], "command": "select_by_index", "args": { "index": 8 } },
   { "keys": ["ctrl+0"], "command": "select_by_index", "args": { "index": 9 } },
+  { "keys": ["ctrl+k", "ctrl+d"], "command": "toggle_distraction_free" },
+  { "keys": ["ctrl+k", "ctrl+m"], "command": "toggle_menu" },
 ]
