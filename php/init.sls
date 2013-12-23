@@ -1,6 +1,3 @@
-include:
-    - vespakoen.php.composer
-
 php:
     pkg.installed:
         - pkgs:
@@ -47,3 +44,6 @@ php-extras:
             - pkg: php
 {% endif %}
 {% endfor %}
+
+include:
+    - vespakoen.php.composer

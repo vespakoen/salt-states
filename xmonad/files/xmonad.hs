@@ -121,5 +121,5 @@ main = xmonad $ ewmh defaultConfig {
 
         , ((mod1Mask,               xK_p), spawn myDmenuTitleBar)
         , ((mod1Mask,               xK_b), sendMessage ToggleStruts)
-        , ((mod1Mask,               xK_d), sendMessage $ Toggle NOBORDERS)
+        , ((mod1Mask,               xK_d), withFocused toggleBorder)
     ]
