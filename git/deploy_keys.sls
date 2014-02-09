@@ -13,6 +13,7 @@ knownhosts:
     - mode: 600
     - user: {{ pillar['username'] }}
     - group: {{ pillar['username'] }}
+    - source: salt://vespakoen/git/files/known_hosts
 
 {% for name, key in pillar.get('deploy_keys', {}).iteritems() %}
 deploy-key-{{ name }}:
