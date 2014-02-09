@@ -1,12 +1,11 @@
 get-composer:
   cmd.run:
-    - name: 'CURL=`which curl`; PHP=`/usr/bin/env php`; $CURL -sS https://getcomposer.org/installer | $PHP'
+    - name: 'CURL=`which curl`; PHP=`which php`; $CURL -sS https://getcomposer.org/installer | $PHP'
     - unless: test -f /usr/local/bin/composer
-    - cwd: /root/
+    - cwd: /tmp/
 
 install-composer:
   cmd.wait:
-    - name: mv /root/composer.phar /usr/local/bin/composer
-    - cwd: /root/
+    - name: mv /tmp/composer.phar /usr/local/bin/composer
     - watch:
       - cmd: get-composer
