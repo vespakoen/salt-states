@@ -9,6 +9,6 @@
     - rev: {{ args.get('rev', 'master') }}
     - target: {{ args.get('path') }}
     - unless: [ -d {{ args.get('path') }} ]
-    - user: {{ pillar['username'] }}
+    - user: {{ args.get('user', pillar['username']) }}
     - submodules: True
 {% endfor %}
