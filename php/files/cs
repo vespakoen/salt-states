@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# isn't life beautiful?
+composer status -v

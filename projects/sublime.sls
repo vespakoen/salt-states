@@ -4,19 +4,19 @@
     - template: jinja
     - mode: 755
 
+{% if(pillar.get('sublime-text', {}).get('projects', False)) %}
 manage-sublime-workspaces clear:
   cmd.run
+{% endif %}
 
-{% for project, args in pillar.get('projects', {}).items() -%}
-{% if(args.get('sublime', False)) %}
-{{ args.get('sublime_path') }}/{{ project }}.sublime-project:
+{% for project, args in pillar.get('sublime-text', {}).get('projects', {}).iteritems() -%}
+{{ args.get('target') }}:
   file.managed:
-    - source: salt://config/sublime/{{ args.get('sublime') }}
+    - source: {{ args.get('source') }}
     - user: {{ pillar['username'] }}
     - group: {{ pillar['username'] }}
     - template: jinja
 
-manage-sublime-workspaces add {{ args.get('sublime_path') }}/{{ project }}.sublime-workspace:
+manage-sublime-workspaces add {{ args.get('target', '').replace('.sublime-project', '.sublime-workspace') }}:
   cmd.run
-{% endif %}
 {% endfor %}

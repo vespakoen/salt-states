@@ -42,6 +42,8 @@ ZSH_THEME="{{ pillar['zsh'].get('theme', 'steeef') }}"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=({{ pillar['zsh'].get('plugins', [])|join(" ") }})
 
+source /home/{{ pillar['username'] }}/.rvm/scripts/rvm
+
 source $ZSH/oh-my-zsh.sh
 
-source /home/{{ pillar['username'] }}/.rvm/scripts/rvm
+alias jd=jump

@@ -19,9 +19,6 @@ mysql-server-5.5:
     - mode: 644
     - require:
         - pkg: mysql-server-5.5
-    - defaults:
-        mysql_replication: {{ pillar['mysql'].get('replication') }}
-        mysql_host_ip: {{ pillar['mysql'].get('bind-ip') }}
 
 {%- for database, args in pillar['mysql'].get('databases', {}).iteritems() %}
 {{ database }}_database:
@@ -29,12 +26,12 @@ mysql-server-5.5:
     - name: {{ database }}
   mysql_user.present:
     - name: {{ args.get('user') }}
-    - host: 'localhost'
+    - host: '{{ args.get('host', 'localhost') }}'
     - password_hash: "{{ args.get('password_hash') }}"
   mysql_grants.present:
     - database: {{ database }}.*
     - user: {{ args.get('user') }}
-    - host: 'localhost'
+    - host: '{{ args.get('host', 'localhost') }}'
     - grant: ALL PRIVILEGES
   require:
     - pkg: python-mysqldb

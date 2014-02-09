@@ -2,7 +2,7 @@
 	"color_scheme": "Packages/Theme - Flatland/Flatland Dark.tmTheme",
 	"ensure_newline_at_eof_on_save": true,
 	"flatland_sidebar_tree_xsmall": true,
-	"flatland_square_tabs": true,
+	"flatland_square_tabs": false,
 	"font_face": "Ubuntu Mono",
 	"font_options":
 	[
