@@ -30,15 +30,7 @@ php-extras:
             - pkg: php
         - template: jinja
 
-{% if('php-apc' in pillar.get('php').get('packages', [])) %}
-/etc/php5/conf.d/20-apc.ini:
-    file.managed:
-        - source: salt://vespakoen/php/files/apc.ini
-        - require:
-            - pkg: php
-{% endif %}
-
-{% for site, args in pillar.get('nginx').get('sites', {}).items() %}
+{% for site, args in pillar.get('sites', {}).items() %}
 {% if 'php' in args and args.php == True %}
 /etc/php5/fpm/pool.d/{{ site }}.conf:
     file.managed:

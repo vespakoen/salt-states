@@ -51,7 +51,7 @@ nginx:
             - pkg: nginx
 {% endif %}
 
-{% for site, args in pillar.get('nginx', {}).get('sites', {}).items() %}
+{% for site, args in pillar.get('sites', {}).items() %}
 
 /etc/nginx/sites-available/{{ site }}:
     file.managed:
