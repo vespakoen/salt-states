@@ -19,6 +19,7 @@ php-extras:
 /etc/php5/fpm/php-fpm.conf:
     file.managed:
         - source: salt://vespakoen/php/files/php-fpm.conf
+        - template: jinja
         - require:
             - pkg: php
 
