@@ -1,3 +1,4 @@
+{% if(pillar.get('git_config', False) == True) %}
 sshconfig:
   file.managed:
     - name: /home/{{ pillar['username'] }}/.ssh/config
@@ -6,6 +7,7 @@ sshconfig:
     - group: {{ pillar['username'] }}
     - template: jinja
     - source: salt://vespakoen/git/ssh_config
+{% endif %}
 
 knownhosts:
   file.managed:

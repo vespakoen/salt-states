@@ -16,6 +16,13 @@ php-extras:
             - pkg: php
         - template: jinja
 
+/etc/php5/fpm/php-fpm.conf:
+    file.managed:
+        - source: salt://vespakoen/php/files/php-fpm.conf
+        - template: jinja
+        - require:
+            - pkg: php
+
 {% for site, args in pillar.get('sites', {}).items() %}
 {% if 'php' in args and args.php == True %}
 /etc/php5/fpm/pool.d/{{ site }}.conf:
@@ -36,6 +43,3 @@ php-extras:
             - pkg: php
 {% endif %}
 {% endfor %}
-
-include:
-    - vespakoen.php.composer
