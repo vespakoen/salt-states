@@ -78,8 +78,9 @@ nginx:
             - pkg: nginx
 {% endif %}
 
-{{ args.get('root') }}:
+ensure-{{site}}-dir:
     file.directory:
+        - name: {{ args.get('root') }}
         - user: www-data
         - group: www-data
         - makedirs: True
