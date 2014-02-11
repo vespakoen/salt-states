@@ -11,7 +11,6 @@ UsePrivilegeSeparation yes
 KeyRegenerationInterval 3600
 ServerKeyBits 768
 SyslogFacility AUTH
-ServerAliveInterval 5
 LogLevel INFO
 LoginGraceTime 10
 MaxAuthTries 4
