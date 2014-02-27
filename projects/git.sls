@@ -4,8 +4,9 @@
     - user: {{ pillar['username'] }}
     - group: {{ pillar['username'] }}
 
-{{ args.get('git') }}:
+ensure-latest-{{args.get('git')}}:
   git.latest:
+    - name: {{ args.get('git') }}
     - rev: {{ args.get('rev', 'master') }}
     - target: {{ args.get('path') }}
     - unless: [ -d {{ args.get('path') }} ]
